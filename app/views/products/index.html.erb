@@ -6,6 +6,6 @@
 <li>Product: <%= product.name %></li>
 <li>Description: <%= product.description %></li>
 <li>Price: <%= product.price_in_cents %></li>
-<li><%= link_to("Check it", "/products/show") %></li>
+<li><%= link_to("Check it", "/products/#{product.id}") %></li>
 </ul>
 <%end%>
