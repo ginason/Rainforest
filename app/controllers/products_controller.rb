@@ -12,13 +12,20 @@ class ProductsController < ApplicationController
   end
 
   def create
-      @product = Product.new(product_params)
+      @product = Product.new
+      @product.name = params[:product][:name]
+      @product.description = params[:product][:description]
+      @product.price_in_cents = params[:product][:price_in_cents]
 
-      if @product.save
-        redirect_to products_path
-      else
-        redirect_to new_product_path
-      end
+
+   if @product.save
+      # if the picture gets saved, generate a get request to "/pictures" (the index)
+      redirect_to "/products"
+    else
+      # otherwise render new.html.erb
+      render :new
+    end
+    
     end
 
     def destroy
