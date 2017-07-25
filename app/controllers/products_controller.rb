@@ -48,8 +48,6 @@ class ProductsController < ApplicationController
       @product.price_in_cents = params[:product][:price_in_cents]
       flash[:notice] = "You have successfully updated the product."
 
-
-
       if @product.save
         redirect_to "/products/#{@product.id}"
       else
