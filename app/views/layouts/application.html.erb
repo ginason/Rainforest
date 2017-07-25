@@ -9,6 +9,12 @@
   </head>
 
   <body>
+    <nav>
+    <%= link_to("New product", "/products/new") %> | <%= link_to("Index", "/products") %>
+ </nav>
+ <% if flash[:notice] %>
+   <p class="notice"><%= flash[:notice] %></p>
+   <% end %>
     <%= yield %>
   </body>
 </html>
