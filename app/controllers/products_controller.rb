@@ -16,6 +16,7 @@ class ProductsController < ApplicationController
       @product.name = params[:product][:name]
       @product.description = params[:product][:description]
       @product.price_in_cents = params[:product][:price_in_cents]
+      flash[:notice] = "You have successfully created a product."
 
 
    if @product.save
@@ -32,6 +33,7 @@ class ProductsController < ApplicationController
       @product = Product.find(params[:id])
       @product.destroy
       redirect_to products_path
+      flash[:notice] = "You have successfully deleted the product."
     end
 
     def edit
@@ -44,6 +46,8 @@ class ProductsController < ApplicationController
       @product.name = params[:product][:name]
       @product.description = params[:product][:description]
       @product.price_in_cents = params[:product][:price_in_cents]
+      flash[:notice] = "You have successfully updated the product."
+
 
 
       if @product.save
