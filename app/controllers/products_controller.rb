@@ -19,13 +19,13 @@ class ProductsController < ApplicationController
 
 
    if @product.save
-      # if the picture gets saved, generate a get request to "/pictures" (the index)
+      # if the product gets saved, generate a get request to "/products" (the index)
       redirect_to "/products"
     else
       # otherwise render new.html.erb
       render :new
     end
-    
+
     end
 
     def destroy
@@ -35,9 +35,22 @@ class ProductsController < ApplicationController
     end
 
     def edit
+      @product = Product.find(params[:id])
     end
 
     def update
+      @product = Product.find(params[:id])
+
+      @product.name = params[:product][:name]
+      @product.description = params[:product][:description]
+      @product.price_in_cents = params[:product][:price_in_cents]
+
+
+      if @product.save
+        redirect_to "/products/#{@product.id}"
+      else
+        render :edit
+      end
     end
 
 
