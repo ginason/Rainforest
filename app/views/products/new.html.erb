@@ -1,19 +1,16 @@
-<%= form_for(@product) do |f| %>
-  <p>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
-  </p>
-  <p>
-    <%= f.label :price_in_cents %><br>
-    <%= f.text_field :price_in_cents %>
-  </p>
-  <p>
-    <%= f.submit "Save" %>
-  </p>
-<% end %>
+<h1>New Product</h1>
+<%= link_to 'See all products', products_path %>
+<%= render 'product_form', product: @product %>
 
-<%= link_to("Back to Products", "/products") %>
+
+<% if @product.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+    <ul>
+    <% @product.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
